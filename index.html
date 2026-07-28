@@ -195,6 +195,7 @@
     <button data-view="nuevo"><span class="ico">＋</span> Nuevo lavado</button>
     <button data-view="historial"><span class="ico">☰</span> Historial</button>
     <button data-view="reportes"><span class="ico">▤</span> Reportes</button>
+    <button data-view="pago"><span class="ico">$</span> Pago móvil</button>
   </nav>
   <div class="sidebar-foot">Comisión configurada: <b style="color:var(--ice)">40%</b>, dividida entre 2 trabajadores.</div>
 </div>
@@ -353,106 +354,29 @@
     </div>
   </section>
 
-</div>
-
-<div class="toast" id="toast"></div>
-
-<div class="modal-bg" id="modal-bg">
-  <div class="modal">
-    <h3>Eliminar registro</h3>
-    <p style="font-size:13px; color:var(--mist); margin-bottom:18px;">Esto eliminará el lavado y recalculará las ganancias automáticamente. ¿Confirmas?</p>
-    <div class="btn-row">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" style="background:linear-gradient(135deg,var(--coral),#b23a30)" onclick="confirmDelete()">Eliminar</button>
+  <!-- PAGO MOVIL -->
+  <section class="view" id="view-pago">
+    <div class="topbar">
+      <div>
+        <h1>Pago móvil y datos de cobro</h1>
+        <div class="sub">Comparte esto con tus clientes o con la jefa para que paguen rápido</div>
+      </div>
     </div>
-  </div>
-</div>
 
-<script>
-/* ---------------- Data ---------------- */
-const SERVICES = [
-  {key:'moto',       name:'Moto normal',    price:3,  tag:'moto'},
-  {key:'moto_cera',  name:'Moto con cera',  price:5,  tag:'moto'},
-  {key:'carro',      name:'Carro',          price:7,  tag:'carro'},
-  {key:'camioneta',  name:'Camioneta',      price:15, tag:'camioneta'},
-  {key:'completo',   name:'Lavado completo',price:25, tag:'completo'},
-];
-const COMISION_PORC = 0.4;
-const TRABAJADORES = 2;
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="section-title">Datos de la cuenta</div>
+        <table>
+          <tbody>
+            <tr><td style="color:var(--mist);">Banco</td><td style="text-align:right;">0105 - Banco Mercantil, C.A.</td></tr>
+            <tr><td style="color:var(--mist);">Titular</td><td style="text-align:right;">Sebastián Ditillo</td></tr>
+            <tr><td style="color:var(--mist);">Cédula</td><td style="text-align:right;">V-32.697.978</td></tr>
+            <tr><td style="color:var(--mist);">Teléfono</td><td style="text-align:right;">0424-236.49.61</td></tr>
+          </tbody>
+        </table>
+        <button class="btn btn-ghost" style="width:100%; margin-top:14px;" onclick="copyPagoMovil()">📋 Copiar datos</button>
+      </div>
 
-let lavados = JSON.parse(localStorage.getItem('seba_lavados') || '[]');
-let selectedService = null;
-let selectedPhoto = null;
-let pendingDeleteId = null;
-
-function save(){ localStorage.setItem('seba_lavados', JSON.stringify(lavados)); }
-function money(n){ return '$' + n.toLocaleString('en-US',{minimumFractionDigits:2, maximumFractionDigits:2}); }
-function todayStr(){ return new Date().toLocaleDateString('es-VE', {weekday:'long', day:'numeric', month:'long'}); }
-function isToday(iso){ const d=new Date(iso), n=new Date(); return d.toDateString()===n.toDateString(); }
-
-/* ---------------- Navigation ---------------- */
-document.querySelectorAll('[data-view]').forEach(el=>{
-  el.addEventListener('click', ()=>showView(el.dataset.view));
-});
-function showView(name){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById('view-'+name).classList.add('active');
-  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active', b.dataset.view===name));
-  if(name==='historial') renderHistorial();
-  if(name==='reportes') renderReportes();
-}
-
-/* ---------------- Toast ---------------- */
-function toast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2200);
-}
-
-/* ---------------- Nuevo lavado form ---------------- */
-function buildServiceGrid(){
-  const grid=document.getElementById('service-grid');
-  grid.innerHTML='';
-  SERVICES.forEach(s=>{
-    const d=document.createElement('div');
-    d.className='service-opt'; d.dataset.key=s.key;
-    d.innerHTML=`<span class="sname">${s.name}</span><span class="sprice">${money(s.price)}</span>`;
-    d.onclick=()=>selectService(s.key);
-    grid.appendChild(d);
-  });
-}
-function selectService(key){
-  selectedService = SERVICES.find(s=>s.key===key);
-  document.querySelectorAll('.service-opt').forEach(el=>el.classList.toggle('selected', el.dataset.key===key));
-  const precio = selectedService.price;
-  document.getElementById('f-precio').textContent = money(precio);
-  document.getElementById('f-comision').textContent = money(precio*COMISION_PORC);
-}
-function buildPriceRef(){
-  const tb=document.getElementById('price-ref');
-  tb.innerHTML = SERVICES.map(s=>`<tr><td>${s.name}</td><td style="text-align:right; color:var(--aqua); font-weight:600;">${money(s.price)}</td></tr>`).join('');
-}
-
-document.getElementById('f-foto').addEventListener('change', e=>{
-  const file=e.target.files[0];
-  if(!file) return;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    selectedPhoto = ev.target.result;
-    const box=document.getElementById('photo-box');
-    box.classList.add('has-photo');
-    document.getElementById('photo-label').innerHTML = `<img src="${selectedPhoto}"><div style="margin-top:6px;">Foto cargada — toca para cambiar</div>`;
-  };
-  reader.readAsDataURL(file);
-});
-
-function resetForm(){
-  document.getElementById('f-nombre').value='';
-  document.getElementById('f-cedula').value='';
-  document.getElementById('f-telefono').value='';
-  document.getElementById('f-placa').value='';
-  selectedService=null; selectedPhoto=null;
-  document.querySelectorAll('.service-opt').forEach(el=>el.classList.remove('selected'));
-  document.getElementById('f-precio').textContent='$0.00';
-  document.getElementById('f-comision').textContent='$0.00';
-  const box=document.getElementById('photo-bo
+      <div class="card" style="display:flex; flex-direction:column; align-items:center; text-align:center;">
+        <div class="section-title" style="width:100%;">Código QR</div>
+        <img src="data:image/jpeg;base64,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
