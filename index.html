@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   :root{
     --navy-950:#071019;
@@ -340,7 +341,10 @@
     <div class="card">
       <div class="section-title">
         Reporte semanal
-        <button class="btn btn-primary" style="padding:8px 14px; font-size:13px; background:linear-gradient(135deg,#1fbf8f,#17a374);" onclick="shareWhatsApp()">📲 Compartir por WhatsApp</button>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-primary" style="padding:8px 14px; font-size:13px; background:linear-gradient(135deg,#2e9bf0,#1c6fb0);" onclick="generatePDF()">📄 Generar PDF</button>
+          <button class="btn btn-primary" style="padding:8px 14px; font-size:13px; background:linear-gradient(135deg,#1fbf8f,#17a374);" onclick="shareWhatsApp()">📲 Compartir por WhatsApp</button>
+        </div>
       </div>
       <table>
         <thead><tr><th>Servicio</th><th>Cantidad</th><th>Total vendido</th><th>Comisión (40%)</th><th>Por trabajador</th></tr></thead>
@@ -451,12 +455,4 @@ function resetForm(){
   document.querySelectorAll('.service-opt').forEach(el=>el.classList.remove('selected'));
   document.getElementById('f-precio').textContent='$0.00';
   document.getElementById('f-comision').textContent='$0.00';
-  const box=document.getElementById('photo-box');
-  box.classList.remove('has-photo');
-  document.getElementById('photo-label').textContent='📷 Tomar / adjuntar foto de la placa';
-  document.getElementById('f-foto').value='';
-}
-
-function guardarLavado(){
-  const nombre=document.getElementById('f-nombre').value.trim();
-  const placa=document.getElementById('f-placa').value.trim().t
+  const box=document.getElementById('photo-bo
