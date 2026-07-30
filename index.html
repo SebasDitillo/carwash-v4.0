@@ -34,8 +34,6 @@
     display:flex;
   }
   h1,h2,h3,.brand{font-family:'Sora',sans-serif;}
-
-  /* ---------- Sidebar ---------- */
   .sidebar{
     width:230px; flex-shrink:0;
     background:var(--navy-900);
@@ -65,13 +63,10 @@
   .nav button.active{background:var(--navy-800); color:var(--ice); box-shadow:inset 3px 0 0 var(--aqua);}
   .nav button .ico{width:18px; text-align:center; font-size:15px;}
   .sidebar-foot{margin-top:auto; padding-top:16px; border-top:1px solid var(--line); font-size:11px; color:var(--mist);}
-
-  /* ---------- Main ---------- */
   .main{flex:1; padding:28px 34px; max-width:1180px;}
   .view{display:none;}
   .view.active{display:block; animation:fade .25s ease;}
   @keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;}}
-
   .topbar{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:26px;}
   .topbar h1{font-size:22px; font-weight:700;}
   .topbar .sub{color:var(--mist); font-size:13px; margin-top:4px;}
@@ -79,11 +74,9 @@
     background:var(--navy-800); border:1px solid var(--line); border-radius:999px;
     padding:8px 14px; font-size:12px; color:var(--mist);
   }
-
   .grid{display:grid; gap:16px;}
   .grid-4{grid-template-columns:repeat(4,1fr);}
   .grid-2{grid-template-columns:1.4fr 1fr;}
-
   .card{
     background:var(--navy-900); border:1px solid var(--line); border-radius:var(--radius);
     padding:18px 20px;
@@ -95,10 +88,8 @@
   .stat-value.teal{color:var(--teal);}
   .stat-value.amber{color:var(--amber);}
   .stat-note{font-size:11.5px; color:var(--mist); margin-top:6px;}
-
   .section-title{font-size:14px; font-weight:600; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between;}
   .section-title .link{font-size:12px; color:var(--aqua); cursor:pointer; font-weight:500;}
-
   table{width:100%; border-collapse:collapse; font-size:13px;}
   th{text-align:left; color:var(--mist); font-weight:500; font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; padding:8px 10px; border-bottom:1px solid var(--line);}
   td{padding:10px 10px; border-bottom:1px solid var(--navy-800); vertical-align:middle;}
@@ -115,8 +106,6 @@
   }
   .row-actions button:hover{color:var(--ice); border-color:var(--aqua);}
   .row-actions button.danger:hover{color:var(--coral); border-color:var(--coral);}
-
-  /* ---------- Forms ---------- */
   label{display:block; font-size:11.5px; color:var(--mist); margin-bottom:6px; text-transform:uppercase; letter-spacing:.04em;}
   input, select{
     width:100%; background:var(--navy-800); border:1px solid var(--line); color:var(--ice);
@@ -126,7 +115,6 @@
   .field{margin-bottom:14px;}
   .field-row{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
   .field-row3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;}
-
   .service-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px;}
   .service-opt{
     border:1px solid var(--line); border-radius:10px; padding:12px 14px;
@@ -137,7 +125,6 @@
   .service-opt.selected{border-color:var(--aqua); background:#0f2b3d;}
   .service-opt .sname{font-size:13.5px; font-weight:500;}
   .service-opt .sprice{font-size:13.5px; font-weight:700; color:var(--aqua);}
-
   .photo-box{
     border:1.5px dashed var(--line); border-radius:10px; padding:20px;
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
@@ -146,10 +133,8 @@
   }
   .photo-box.has-photo{border-style:solid; border-color:var(--aqua); color:var(--ice);}
   .photo-box img{max-height:70px; border-radius:6px;}
-
   .summary-box{display:flex; gap:12px; margin-bottom:18px;}
   .summary-box .card{flex:1; text-align:left;}
-
   .btn{
     all:unset; cursor:pointer; text-align:center; font-weight:600; font-size:14px;
     padding:12px 18px; border-radius:10px; font-family:'Inter',sans-serif;
@@ -160,10 +145,8 @@
   .btn-ghost:hover{color:var(--ice); border-color:var(--mist);}
   .btn-row{display:flex; gap:10px;}
   .btn-row .btn-ghost{flex:1;} .btn-row .btn-primary{flex:2;}
-
   .search-bar{display:flex; gap:10px; margin-bottom:16px;}
   .search-bar input{flex:1;}
-
   .empty{text-align:center; padding:40px 0; color:var(--mist); font-size:13px;}
   .toast{
     position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
@@ -172,11 +155,9 @@
     transition:opacity .25s, transform .25s; pointer-events:none; z-index:50;
   }
   .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
-
   .split-pill{display:flex; align-items:center; gap:8px; background:var(--navy-800); border:1px solid var(--line); border-radius:999px; padding:6px 6px 6px 14px; font-size:12px;}
   .split-pill b{color:var(--aqua);}
   .chart-wrap{position:relative; height:220px;}
-
   .modal-bg{position:fixed; inset:0; background:rgba(4,10,17,.6); display:none; align-items:center; justify-content:center; z-index:60;}
   .modal-bg.show{display:flex;}
   .modal{background:var(--navy-900); border:1px solid var(--line); border-radius:14px; padding:22px; width:360px;}
@@ -202,7 +183,6 @@
 
 <div class="main">
 
-  <!-- INICIO -->
   <section class="view active" id="view-inicio">
     <div class="topbar">
       <div>
@@ -243,7 +223,6 @@
     </div>
   </section>
 
-  <!-- NUEVO LAVADO -->
   <section class="view" id="view-nuevo">
     <div class="topbar">
       <div>
@@ -301,7 +280,6 @@
     </div>
   </section>
 
-  <!-- HISTORIAL -->
   <section class="view" id="view-historial">
     <div class="topbar">
       <div>
@@ -321,7 +299,6 @@
     </div>
   </section>
 
-  <!-- REPORTES -->
   <section class="view" id="view-reportes">
     <div class="topbar">
       <div>
@@ -354,7 +331,6 @@
     </div>
   </section>
 
-  <!-- PAGO MOVIL -->
   <section class="view" id="view-pago">
     <div class="topbar">
       <div>
@@ -379,4 +355,82 @@
 
       <div class="card" style="display:flex; flex-direction:column; align-items:center; text-align:center;">
         <div class="section-title" style="width:100%;">Código QR</div>
-        <img src="data:image/jpeg;base64,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
+        <div style="width:200px; height:200px; border:1.5px dashed var(--line); border-radius:10px; display:flex; align-items:center; justify-content:center; text-align:center; padding:16px; color:var(--mist); font-size:12px;">
+          📷 Agrega aquí la imagen de tu QR de pago móvil (foto que te dio tu banco)
+        </div>
+        <p style="font-size:12px; color:var(--mist); margin-top:10px;">Escanéalo desde la app de tu banco para pagar directo.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <p style="font-size:12.5px; color:var(--mist); line-height:1.6;">
+        Comparte tu reporte semanal junto con estos datos para que la jefa haga el pago con toda la información en un solo mensaje. Usa el botón "Compartir por WhatsApp" en la sección de Reportes.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <h3>Eliminar registro</h3>
+    <p style="font-size:13px; color:var(--mist); margin-bottom:18px;">Esto eliminará el lavado y recalculará las ganancias automáticamente. ¿Confirmas?</p>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" style="background:linear-gradient(135deg,var(--coral),#b23a30)" onclick="confirmDelete()">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SERVICES = [
+  {key:'moto',       name:'Moto normal',    price:3,  tag:'moto'},
+  {key:'moto_cera',  name:'Moto con cera',  price:5,  tag:'moto'},
+  {key:'carro',      name:'Carro',          price:7,  tag:'carro'},
+  {key:'camioneta',  name:'Camioneta',      price:15, tag:'camioneta'},
+  {key:'completo',   name:'Lavado completo',price:25, tag:'completo'},
+];
+const COMISION_PORC = 0.4;
+const TRABAJADORES = 2;
+
+let lavados = [];
+try {
+  lavados = JSON.parse(localStorage.getItem('seba_lavados') || '[]');
+  if(!Array.isArray(lavados)) lavados = [];
+} catch(e) {
+  lavados = [];
+  localStorage.removeItem('seba_lavados');
+}
+let selectedService = null;
+let selectedPhoto = null;
+let pendingDeleteId = null;
+
+function save(){ localStorage.setItem('seba_lavados', JSON.stringify(lavados)); }
+function money(n){ return '$' + n.toLocaleString('en-US',{minimumFractionDigits:2, maximumFractionDigits:2}); }
+function todayStr(){ return new Date().toLocaleDateString('es-VE', {weekday:'long', day:'numeric', month:'long'}); }
+function isToday(iso){ const d=new Date(iso), n=new Date(); return d.toDateString()===n.toDateString(); }
+
+document.querySelectorAll('[data-view]').forEach(el=>{
+  el.addEventListener('click', ()=>showView(el.dataset.view));
+});
+function showView(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active', b.dataset.view===name));
+  if(name==='historial') renderHistorial();
+  if(name==='reportes') renderReportes();
+}
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+function buildServiceGrid(){
+  const grid=document.getElementById('service-grid');
+  grid.innerHTML='';
+  SERVICES.forEach(s=>{
+    const d=document.createElement('
